@@ -7,21 +7,20 @@
 // категории (всех вложенных в него <li>).
 // В результате, в консоли будут выведены такие сообщения.
 
-const listCategories = document.querySelector("#categories");
+const listCategories = document.querySelectorAll("li.item");
 
-const categories = listCategories.children.length;
+const categories = listCategories.length;
 console.log(`Number of categories: ` + categories);
 
 const childItems = listCategories.children;
-// console.log(childItems);
 
-for (let i = 0; i < categories; i += 1) {
-    const itemName = childItems[i].firstElementChild.textContent;
-    const countItems = childItems[i].lastElementChild.children.length;
+listCategories.forEach(element => {
+  const itemName = element.firstElementChild.textContent;   
+  const countItems = element.lastElementChild.children.length;
 
-    console.log(`Category: ` + itemName); 
-    console.log(`Elements: ` + countItems);
-};
+  console.log(`Category: ` + itemName); 
+  console.log(`Elements: ` + countItems);
+});
 
 
 

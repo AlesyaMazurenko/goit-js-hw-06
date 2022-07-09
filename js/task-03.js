@@ -1,5 +1,3 @@
-
-
 // Задание 3​
 
 // Напиши скрипт для создания галереи изображений по массиву данных. 
@@ -32,28 +30,9 @@ const images = [
 
 const galleryListContainer = document.querySelector(".gallery");
 
-const elements = images.map(image => {
-
-  const galleryItem = document.createElement("li");
-  const galleryImg = document.createElement("img");
-
-  //add atributes
-
-  galleryImg.src = image.url;
-  galleryImg.alt = image.alt;
-  galleryImg.width = 620;
-  galleryImg.style.margin = '20px';
-  
-  galleryItem.style.display = 'flex';
-  galleryItem.style.justifyContent = 'space-around';
-
-  galleryItem.insertAdjacentElement("beforeend", galleryImg);
-
-  console.log(galleryItem);
-  return galleryItem;
-});
-
-galleryListContainer.append(...elements);
+const elements = images.map(({ url, alt }) => `<li class = galleryItem><img alt = ${alt} src = ${url} width = 640px></li>`).join(" ");
+  galleryListContainer.insertAdjacentHTML("beforeend", elements);
 
 
-                                        
+
+

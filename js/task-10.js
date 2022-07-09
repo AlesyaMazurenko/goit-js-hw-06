@@ -22,47 +22,23 @@
 
 
 const boxBoxes = document.querySelector('#boxes');
-//const boxControls = document.querySelector('#controls');
 const createBtn = document.querySelector('[data-create]');
 const destroyBtn = document.querySelector('[data-destroy]');
 const amountInput = document.querySelector('input'); //.value;
 let startWidth = 20;
-let amountNum = 0;
-// console.log(amount);
 
+let amount = amountInput.valueAsNumber;
 
-
- let fragment = new DocumentFragment();
-
-
-function onAmount() {
-    let amountNum = amountInput.value;
-    console.log(amountNum);
-};
-
-console.log(amountNum);
   
-function createBoxes() {
-  let boxElements = [];//массив для div
-    for (let i = 0; i < amountNum; i += 1) {
-        console.log(i);
+const onCreateBoxes = () => {
+    for (let i = 0; i < amountInput.valueAsNumber; i += 1) {
         const boxEl = document.createElement('div');
-        let newWidth = startWidth + 10;
-        startWidth = newWidth;
-
-        console.log(newWidth);
-        boxEl.style.width = newWidth + 'px'; //'${newWidth}px';
-        boxEl.style.height = newWidth + 'px';
+        startWidth += 10;
+        boxEl.style.width = startWidth + 'px'; 
+        boxEl.style.height = startWidth + 'px';
         boxEl.style.backgroundColor = getRandomHexColor();
-        console.log(boxEl);
-
-        boxElements.push(boxEl);
-  
-        // return startWidth; 
+        boxBoxes.append(boxEl);
     };
-
-      boxBoxes.append(...boxElements);
-      console.log(boxElements);
    };
 
 function getRandomHexColor() {
@@ -71,16 +47,10 @@ function getRandomHexColor() {
       .padStart(6, 0)}`;
 };
 
-function onDestroyBtn() {
-  let startWidth = 20;
-  // document.querySelector('input').value = '';
-  // const amountNum = 0; 
+const onDestroyBtn = () => {
+  startWidth = 20; 
   boxBoxes.innerHTML = '';
-  amountInput.value = '';
-  // boxBoxes.remove(childNodes);
-  return startWidth;
-} ;
+} 
 
-amountInput.addEventListener('blur', onAmount);
-createBtn.addEventListener('click', createBoxes);
+createBtn.addEventListener('click', onCreateBoxes);
 destroyBtn.addEventListener('click', onDestroyBtn);
